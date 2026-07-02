@@ -1,0 +1,622 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 9% 1em;
+  background-color: transparent;
+  margin-bottom: 1em;
+}
+
+nav .nav-right {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1em;
+}
+
+nav .nav-right .logo a {
+  display: block;
+  font-size: 2rem;
+  text-decoration: none;
+  color: #9268f7;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  text-align: center;
+}
+
+nav .search-section {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+nav .search-section input {
+  width: 100%;
+  padding: 6.5px;
+  border: none;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+nav .nav-right .Watchlist-btn a{
+text-decoration: none;
+font-size: 1em;
+color: whitesmoke;
+}
+
+nav .nav-right .Watchlist-btn {
+  border: none;
+  padding: 5px;
+  border-radius: 50px;
+  background-color: #9268f7;
+  
+}
+
+.search-section button {
+  background-color: #9268f7;
+  color: whitesmoke;
+  font-size: 1em;
+  padding: 5px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: none;
+}
+
+main {
+  padding: 0px 9% 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  color: whitesmoke;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 300;
+}
+.grid-layout {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+  padding: 0px 9% 100px;
+}
+
+.Watchlist-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+  padding: 0px 9% 100px;
+  color: whitesmoke;
+}
+
+.movie-Box {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: linear-gradient(rgb(185, 163, 39), black 25%);
+  gap: 1em;
+  font-family: Arial, Helvetica, sans-serif;
+  transition: 0.5s;
+}
+
+.movie-Box:hover {
+  transform: translateY(-10px);
+  background: #9368f76e;
+  border: 1px solid #9268f7;
+}
+
+.movie-Box img {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(245, 245, 245, 0.12);
+  transition: 0.5s;
+  overflow: hidden;
+}
+
+.movie-Box img:hover {
+  transform: scale(1.02);
+}
+
+.result-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 0px;
+}
+
+body {
+  background-color: #161616;
+}
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 70vh; /* Hero section ki height */
+  overflow: hidden; /* Bahar nikalne wali video ko kaat dega */
+  display: flex;
+  align-items: flex-end; /* Text ko bottom left mein rakhega */
+  background-color: #111; /* Fallback color */
+  border-radius: 20px;
+}
+
+/* Ye CSS video ko stretch aur cover karti hai, bina aspect ratio bigade */
+.video-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 56.25vw; /* 16:9 aspect ratio */
+  min-height: 100vh;
+  min-width: 177.77vh;
+  pointer-events: none; /* MAGIC: Koi user click nahi kar payega */
+  z-index: 1;
+}
+
+/* Gradient overlay taaki text clearly padha ja sake */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(17,17,17,1) 0%, rgba(17,17,17,0) 100%);
+  z-index: 2;
+}
+
+/* Hero section ke text ki styling */
+.hero-info {
+  position: relative;
+  z-index: 3; /* Sabse upar */
+  padding: 1em;
+  max-width: 700px;
+  color: white;
+}
+
+.hero-btn-play {
+  padding: 10px 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 5px;
+}
+
+.hero-btn-info {
+  padding: 10px 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  background: rgba(109, 109, 110, 0.7);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.mid-section button {
+  background-color: transparent;
+  border: none;
+  font-size: 1em;
+}
+
+.mid-section {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "box1 box1 box2 box2"
+    "box3 box3 box3 box4";
+  gap: 1em;
+}
+
+.mid-section .box {
+  width: 100%;
+  background-color: #2b2b2b;
+  border-radius: 15px;
+  border: 1px solid rgba(245, 245, 245, 0.12);
+}
+
+#box-1 {
+  padding: 1em;
+}
+
+.box-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.popular-movie {
+  width: 100%;
+  display: flex;
+  gap: 1em;
+  border-radius: 15px;
+  padding-top: 1em;
+}
+.trading-movie {
+  width: 100%;
+  display: flex;
+  gap: 1em;
+  border-radius: 15px;
+  padding-top: 1em;
+}
+
+.movie {
+  width: 100%;
+  overflow: hidden;
+}
+
+.movie img {
+  width: 100%;
+  border-radius: 15px;
+  border: 1px solid rgba(245, 245, 245, 0.12);
+}
+
+#box-2 {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1em;
+  padding: 1em 1em;
+}
+
+.top-rated-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.list-img {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.list-img img {
+  width: 30%;
+  max-width: 170px;
+  min-width: 90px;
+  border-radius: 10px;
+  border: 1px solid rgba(245, 245, 245, 0.12);
+}
+
+#star-icon {
+  color: #9268f7;
+}
+#t-icon {
+  color: #9268f7;
+}
+#p-icon {
+  color: #9268f7;
+}
+
+.action {
+  display: flex;
+  width: 100%;
+  border-radius: 15px;
+  background-color: #2b2b2b;
+  border: 1px solid rgba(245, 245, 245, 0.12);
+  overflow-x: auto;
+}
+
+.action::-webkit-scrollbar {
+  display: none;
+}
+
+.group {
+  display: flex;
+  gap: 1em;
+  animation: spin 15s infinite linear;
+  padding-right: 1em;
+}
+
+.group img {
+  flex: 0 0 5em;
+  width: 100%;
+  border-radius: 15px;
+  border: 1px solid rgba(245, 245, 245, 0.12);
+}
+
+#box-4 {
+  width: 100%;
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+}
+
+#box-4 button {
+  background-color: #9268f7;
+  border-radius: 50px;
+  padding: 5px;
+  font-size: 2rem;
+  color: whitesmoke;
+}
+
+
+.last-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.last-btn #load-more-btn{
+  display: none;
+  background-color: #9268f7;
+  border-radius: 50px;
+  padding: 5px;
+  font-size: 2rem;
+  color: whitesmoke;
+  margin-bottom: 1em;
+}
+
+/* ==========================================
+   MODAL / DIALOG CSS (Professional & Responsive)
+   ========================================== */
+
+/* 1. Base Dialog Styling */
+.dialog {
+  justify-self: center;
+  align-self: center;
+  border: none;
+  border-radius: 12px;
+  background-color: #1a1a1a; /* Dark premium background */
+  color: #f1f1f1;
+  padding: 0;
+  width: 90%;
+  max-width: 800px; /* PC par zyada na faile */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+  
+  /* Smooth entry animation */
+  animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* 2. Dialog Backdrop (Background Blur) */
+.dialog::backdrop {
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(5px);
+  animation: backdropFade 0.3s ease-out forwards;
+}
+
+/* 3. Inner Container Layout */
+.film-box {
+  display: flex;
+  
+  flex-direction: column; /* Mobile par column */
+  gap: 25px;
+  padding: 25px;
+  max-height: 85vh; /* Screen se bahar na jaye */
+  overflow-y: auto; /* Agar content lamba ho toh scroll aa jaye */
+}
+
+/* Custom Premium Scrollbar for the Dialog */
+.film-box::-webkit-scrollbar {
+  width: 8px;
+}
+.film-box::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+
+/* Poster styling inside dialog */
+.film-box img{
+  display: flex;
+  align-self: center;
+  justify-self: center;
+}
+.film-box .film-poster {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 8px;
+  margin: 0 auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+/* Dialog Action Buttons (Add to watchlist / Close) */
+.film-box button {
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.film-box button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* 4. Desktop & Tablet View (Responsive Magic) */
+
+/* 5. Keyframes for Animations */
+@keyframes modalPop {
+  0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes backdropFade {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.film-box{
+  width: 100%;
+  display: grid;
+}
+
+@keyframes spin {
+  from {
+    translate: 0;
+  }
+  to {
+    translate: -100%;
+  }
+}
+
+@media (max-width: 500px) {
+  nav {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 2% 10px;
+  }
+  nav .nav-right {
+    justify-content: space-between;
+  }
+  .grid-layout {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 0px 2% 10px;
+  }
+  .Watchlist-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 0px 2% 10px;
+  }
+
+  main {
+    padding: 0px 2% 10px;
+  }
+}
+@media (min-width: 501px) {
+  .grid-layout {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 15px;
+  }
+  .Watchlist-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 15px;
+  }
+   .film-box {
+    flex-direction: row; /* PC par side-by-side */
+    align-items: flex-start;
+  }
+  
+  .film-box .film-poster {
+    width: 300px;
+    flex-shrink: 0; /* Image choti na ho PC par */
+    margin: 0;
+  }
+}
+
+@media (max-width: 770px) {
+  #box-4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1em;
+    padding: 1em;
+  }
+
+  #box-4 button {
+    font-size: 1rem;
+  }
+
+  .mid-section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .popular-movie :nth-child(3) {
+    display: none;
+  }
+  .popular-movie :nth-child(4) {
+    display: none;
+  }
+
+  .trading-movie :nth-child(3) {
+    display: none;
+  }
+  .trading-movie :nth-child(4) {
+    display: none;
+  }
+}
+
+@media (min-width: 771px) {
+  .grid-layout {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    padding: 0px 5% 10px;
+  }
+  .Watchlist-container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    padding: 0px 5% 10px;
+  }
+  .popular-movie {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .list-img img {
+    width: 40%;
+    max-width: 170px;
+    min-width: 90px;
+    border-radius: 10px;
+    border: 1px solid rgba(245, 245, 245, 0.12);
+  }
+}
+
+@media (min-width: 1250px) {
+  .grid-layout {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    padding: 0px 9% 100px;
+  }
+  .Watchlist-container {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    padding: 0px 9% 100px;
+  }
+  .list-img img {
+    width: 120px;
+    max-width: 170px;
+    min-width: 90px;
+    border-radius: 10px;
+    border: 1px solid rgba(245, 245, 245, 0.12);
+  }
+}
+@media (max-width: 1999px) {
+  .list-img img {
+    width: 40%;
+    max-width: 250px;
+    min-width: 90px;
+    border-radius: 10px;
+    border: 1px solid rgba(245, 245, 245, 0.12);
+  }
+}
+
+@media (min-width: 2000px) {
+  .popular-movie {
+    display: flex;
+  }
+  .popular-movie :nth-child(3) {
+    display: none;
+  }
+  .popular-movie :nth-child(4) {
+    display: none;
+  }
+
+  .list-img img {
+    width: 40%;
+    max-width: 170px;
+    min-width: 90px;
+    border-radius: 10px;
+    border: 1px solid rgba(245, 245, 245, 0.12);
+  }
+}

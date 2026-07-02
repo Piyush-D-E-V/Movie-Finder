@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MovieFinder</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-right">
+        <span class="logo"><a href="index.html">Movie App</a></span>
+        <button class="Watchlist-btn" onclick="renderMovie()">
+          <a href="list.html">Watch List</a>
+        </button>
+      </div>
+      <div class="search-section">
+        <input type="text" id="Search-input" />
+        <button id="getMovie" onclick="searchMovie()"><i class="ri-search-line"></i>GetMovie</button>
+      </div>
+    </nav>
+    <main class="main-container">
+
+      <div class="hero-section" id="hero-section">
+  <div class="hero-overlay"></div>
+  <div class="hero-info" id="hero-info">
+    </div>
+</div>
+
+      <div class="mid-section">
+        <div class="box" id="box-1" style="grid-area: box1">
+          <div class="box-top">
+            <p><i class="ri-film-line" id="p-icon"></i> Popular</p>
+            <button class="popular-movie-btn" style="color: #9268f7">
+              See All<i class="ri-arrow-right-wide-line"></i>
+            </button>
+          </div>
+          <div class="popular-movie"></div>
+        </div>
+        <div class="box" id="box-2" style="grid-area: box2">
+          <div class="box-top">
+            <p><i class="ri-star-line" id="star-icon"></i> Top Rated</p>
+            <button
+              class="top-btn"
+              style="color: #9268f7; cursor: pointer">
+              See All<i class="ri-arrow-right-wide-line"></i>
+            </button>
+          </div>
+          <div class="top-rated-list"></div>
+        </div>
+        <div class="box" id="box-1" style="grid-area: box3">
+          <div class="box-top">
+            <p><i class="ri-fire-fill" id="t-icon"></i>Trading-movie</p>
+            <button class="trading-movie-btn" style="color: #9268f7">
+              See All<i class="ri-arrow-right-wide-line"></i>
+            </button>
+          </div>
+          <div class="trading-movie"></div>
+        </div>
+
+        <div class="box" id="box-4" style="grid-area: box4">
+          <button class="top-rated-btn">⭐Top-Rated</button>
+          <button class="action-btn">🔥Action</button>
+          <button class="adventure-btn">🤠Adventure</button>
+          <button class="scifi-btn">🤖Sci-Fi</button>
+          <button class="comedy-btn">🤣Comedy</button>
+          <button class="fantasy-btn">🧛Fantasy</button>
+        </div>
+      </div>
+
+      <div class="action">
+        <div class="group">
+          <img
+            src="https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg"
+            alt=""
+          />
+          <img
+            src="https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg"
+            alt=""
+          />
+
+          <img
+            src="https://cdn.shopify.com/s/files/1/0057/3728/3618/products/301983133_1072845516765536_7607702103270945846_n_500x749.jpg?v=1762971336"
+            alt=""
+          />
+
+          <img
+            src="https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg"
+            alt=""
+          />
+          <img
+            src="https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg"
+            alt=""
+          />
+        </div>
+        <div aria-hidden class="group">
+          <img
+            src="https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg"
+            alt=""
+          />
+          <img
+            src="https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg"
+            alt=""
+          />
+
+          <img
+            src="https://cdn.shopify.com/s/files/1/0057/3728/3618/products/301983133_1072845516765536_7607702103270945846_n_500x749.jpg?v=1762971336"
+            alt=""
+          />
+
+          <img
+            src="https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg"
+            alt=""
+          />
+          <img
+            src="https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg"
+            alt=""
+          />
+        </div>
+      </div>
+    </main>
+    <dialog class="dialog" id="dialog">
+      <div class="film-box">
+        
+      </div>
+    </dialog>
+    <div class="last-btn">
+    <button id="load-more-btn">Load More</button>
+  </div>
+    <script src="script.js"></script>
+  </body>
+</html>
