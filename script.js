@@ -389,7 +389,7 @@ async function loadHeroTrailer() {
     const trendingData = await fetchAPI(trendingUrl);
     if (!trendingData) return;
 
-    const topMovie = trendingData.results[0]; 
+    const topMovie = trendingData.results[2]; 
     if (!topMovie) return;
 
     const videoUrl = `https://api.themoviedb.org/3/movie/${topMovie.id}/videos?api_key=${API_KEY}`;
