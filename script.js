@@ -118,6 +118,9 @@ async function searchMovie(isLoadMore = false) {
 // ==========================================
 async function choseMovie(item) {
   if (!dialog) return;
+  
+  document.body.style.overflow = "hidden";
+
   dialog.innerHTML = '<div class="film-box"><h3 style="color:white;">Loading details...</h3></div>';
   dialog.showModal();
 
@@ -174,22 +177,20 @@ async function choseMovie(item) {
       Title: displayTitle,
       Poster: posterUrl,
       Rating: item.vote_average ? item.vote_average.toFixed(1) : "N/A",
-      fullData: item // 🔥 YAHAN CHANGE KIYA: Poora movie data save kar liya taaki watchlist mein use ho sake
+      fullData: item
     });
     localStorage.setItem("movieList", JSON.stringify(watchList));
     alert(`✅ ${displayTitle} Added in the WatchList!`);
-    if (list) renderMovie();
+    if (typeof renderMovie === 'function') renderMovie();
   });
 
   const closeBtn = filmBox.querySelector("#close-dialog");
   closeBtn.addEventListener("click", () => {
-    dialog.innerHTML = ""; 
-    dialog.close();
+    dialog.close(); // Dialog close hoga, aur niche wala event listener baaki kaam karega
   });
 
   dialog.appendChild(filmBox);
 }
-
 // ==========================================
 // 5. WATCHLIST SYSTEM (Updated Empty State)
 // ==========================================
@@ -472,3 +473,18 @@ async function loadHeroTrailer() {
   }
 }
 loadHeroTrailer();
+
+// ==========================================
+// CLICK OUTSIDE TO CLOSE & RESTORE SCROLL
+// ==========================================
+dialog.addEventListener("click", (e) => {
+  if (e.target === dialog) {
+    dialog.close();
+  }
+});
+
+dialog.addEventListener("close", () => {
+  document.body.style.overflow = "auto";
+  
+  dialog.innerHTML = ""; 
+});
