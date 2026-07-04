@@ -489,10 +489,6 @@ body {
 .film-box::-webkit-scrollbar {
   display: none;
 }
-.film-box::-webkit-scrollbar-thumb {
-  background: #444;
-  border-radius: 4px;
-}
 
 /* Poster styling inside dialog */
 .film-box img {
