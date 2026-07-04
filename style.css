@@ -129,6 +129,7 @@ main {
   border: 1px solid rgba(245, 245, 245, 0.12);
   transition: 0.5s;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .movie-Box img:hover {
@@ -361,6 +362,7 @@ body {
   min-width: 90px;
   border-radius: 10px;
   border: 1px solid rgba(245, 245, 245, 0.12);
+  cursor: pointer;
 }
 
 #star-icon {
