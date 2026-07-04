@@ -124,10 +124,9 @@ async function choseMovie(item) {
   const displayTitle = item.title || item.name || item.original_title;
   const displayDate = item.release_date || item.first_air_date || "N/A";
   const posterUrl = getPosterUrl(item.poster_path);
-  const movieId = item.id; // ✅ Use TMDB movie id instead of Date.now()
+  const movieId = item.id; 
   const mediaType = item.media_type || 'movie'; 
 
-  // ✅ Fetch Trailer for the Popup
   let trailerHtml = "";
   const videoUrl = `https://api.themoviedb.org/3/${mediaType}/${movieId}/videos?api_key=${API_KEY}`;
   const videoData = await fetchAPI(videoUrl);
@@ -142,7 +141,7 @@ async function choseMovie(item) {
     }
   }
 
-  dialog.innerHTML = ""; // Clear loading text
+  dialog.innerHTML = ""; 
   const filmBox = document.createElement("div");
   filmBox.classList.add("film-box");
 
@@ -165,17 +164,17 @@ async function choseMovie(item) {
 
   const addWatch = filmBox.querySelector("#add");
   addWatch.addEventListener("click", () => {
-    // Check using actual TMDB ID
     const exists = watchList.some((movie) => movie.id === movieId);
     if (exists) {
       alert("⚠️ Movie already added to Watchlist!");
       return;
     }
     watchList.unshift({
-      id: movieId, // ✅ Saved with actual ID
+      id: movieId, 
       Title: displayTitle,
       Poster: posterUrl,
-      Rating: item.vote_average ? item.vote_average.toFixed(1) : "N/A"
+      Rating: item.vote_average ? item.vote_average.toFixed(1) : "N/A",
+      fullData: item // 🔥 YAHAN CHANGE KIYA: Poora movie data save kar liya taaki watchlist mein use ho sake
     });
     localStorage.setItem("movieList", JSON.stringify(watchList));
     alert(`✅ ${displayTitle} Added in the WatchList!`);
@@ -184,7 +183,6 @@ async function choseMovie(item) {
 
   const closeBtn = filmBox.querySelector("#close-dialog");
   closeBtn.addEventListener("click", () => {
-    // ✅ Close trailer and prevent running in background by emptying innerHTML
     dialog.innerHTML = ""; 
     dialog.close();
   });
@@ -193,7 +191,7 @@ async function choseMovie(item) {
 }
 
 // ==========================================
-// 5. WATCHLIST SYSTEM
+// 5. WATCHLIST SYSTEM (Updated Empty State)
 // ==========================================
 if (list) {
   renderMovie();
@@ -204,16 +202,41 @@ function renderMovie() {
   let savedMovies = savedMoviesRaw ? JSON.parse(savedMoviesRaw) : [];
   list.innerHTML = "";
 
+  // 🔥 EMPTY STATE LOGIC: Centered big icon with text
+  if (savedMovies.length === 0) {
+    list.innerHTML = `
+      <div style="grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 20px; text-align: center;">
+        <i class="ri-film-line" style="font-size: 10rem; color: #9268f7; margin-bottom: 15px;"></i>
+        <h2 style="color: whitesmoke; font-size: 2rem; margin-bottom: 10px;">Your Watchlist is Empty</h2>
+        <p style="color: gray; font-size: 1.1rem;">Explore movies and click 'Add to WatchList' to see them here! 🍿</p>
+      </div>
+    `;
+    return;
+  }
+
+  // Agar movies hain, toh render karo
   savedMovies.forEach((liked) => {
     const banner = document.createElement("div");
     banner.classList.add("movie-Box");
     banner.innerHTML = `
-      <img src="${liked.Poster}" alt="${liked.Title}" class="Movie-photo">
+      <img src="${liked.Poster}" alt="${liked.Title}" class="Movie-photo" style="cursor: pointer;">
       <p id="movie-title">${liked.Title}</p>
       <span>⭐${liked.Rating || "N/A"}</span>
-      <button class="remove-bnt">X</button>
+      <button class="remove-bnt" style="background: #ff4757; color: white; border: none; padding: 8px; border-radius: 5px; margin-top: 10px; width: 100%; cursor: pointer;">Remove</button>
     `;
 
+    // Click on Watchlist poster to open dialog
+    const posterClick = banner.querySelector(".Movie-photo");
+    posterClick.addEventListener("click", async () => {
+      if (liked.fullData) {
+        choseMovie(liked.fullData);
+      } else {
+        const fallbackData = await fetchAPI(`https://api.themoviedb.org/3/movie/${liked.id}?api_key=${API_KEY}`);
+        if (fallbackData) choseMovie(fallbackData);
+      }
+    });
+
+    // Remove Button logic
     const removeBtn = banner.querySelector(".remove-bnt");
     removeBtn.addEventListener("click", () => {
       savedMovies = savedMovies.filter((movie) => movie.id !== liked.id);
@@ -221,10 +244,10 @@ function renderMovie() {
       localStorage.setItem("movieList", JSON.stringify(savedMovies));
       renderMovie();
     });
+    
     list.appendChild(banner);
   });
 }
-
 // ==========================================
 // 6. ORIGINAL HOME PAGE LOGIC 
 // ==========================================
